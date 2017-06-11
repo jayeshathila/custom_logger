@@ -2,6 +2,7 @@
 .mvn/
 build/
 gradle/
+.gradle/
 *.iml
-gradlew
+gradlew*
 mvn*
