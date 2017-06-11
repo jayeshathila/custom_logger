@@ -12,6 +12,7 @@ public class LoggerTest {
     public void testFileSinkLog() {
         Message message = new Message("Voila to file sink", LogLevel.DEBUG, LoggerTest.class.getSimpleName());
         Logger.log(message);
+        Logger.log(message);
     }
 
     @Test

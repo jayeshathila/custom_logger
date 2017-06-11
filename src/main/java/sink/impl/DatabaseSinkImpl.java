@@ -33,10 +33,15 @@ public class DatabaseSinkImpl extends AbstractSink {
 
     private MongoTemplate mongoTemplate = null;
 
+    // Registering implementation to sink registry.
     static {
         SinkRegistry.getInstance().registerIfAbsent(new DatabaseSinkImpl());
     }
 
+    /**
+     * @param message: this is the bean which contains all the information about the log
+     *                 Pushing logs to instance of mongo given in configurations.
+     */
     @Override
     public void pushLog(Message message) {
         mongoTemplate.save(new MongoLogBean(message));
@@ -52,13 +57,16 @@ public class DatabaseSinkImpl extends AbstractSink {
         DatabaseSinkImpl databaseSink = new DatabaseSinkImpl();
         databaseSink.setSuperProperties(properties);
         databaseSink.setHostIp(PropertyUtil.getValueOrDefault(properties, DB_HOST_KEY, DEFAULT_HOST));
+
         String value = PropertyUtil.getValueOrDefault(properties, DB_PORT_KEY, String.valueOf(DEFAULT_PORT));
         if (StringUtils.isNumeric(value)) {
             databaseSink.setPort(Integer.valueOf(value));
         } else {
             databaseSink.setPort(DEFAULT_PORT);
         }
+
         databaseSink.setMongoTemplate();
+
         return databaseSink;
     }
 
@@ -79,6 +87,7 @@ public class DatabaseSinkImpl extends AbstractSink {
         this.port = port;
     }
 
+    // Setting properties for mongo template. As of now pushing logs to demo_log database
     private void setMongoTemplate() {
         MongoClient client = new MongoClient(this.hostIp, this.port);
         SimpleMongoDbFactory simpleMongoDbFactory = new SimpleMongoDbFactory(client, DEMO_LOG_COLLECTION);

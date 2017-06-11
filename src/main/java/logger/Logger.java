@@ -8,6 +8,7 @@ import sink.Sink;
  */
 public class Logger {
 
+    //Static method to log to sink based on log level defined in method
     public static void log(Message message) {
         if (message == null) {
             return;

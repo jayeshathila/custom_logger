@@ -16,6 +16,10 @@ import java.util.concurrent.ConcurrentMap;
  * Created by jayeshathila
  * on 10/06/17.
  */
+
+/**
+ * This keeps registry of log_level vs sink implementation given in config file
+ */
 public class LoggerRegistry {
 
     public static final String SINK_TYPE = "sink_type";
@@ -25,7 +29,7 @@ public class LoggerRegistry {
     static {
 
         try {
-            // loading class to register
+            // loading classes to register
             ImmutableSet<ClassPath.ClassInfo> classes = ClassPath.from(Sink.class.getClassLoader()).getTopLevelClasses("sink.impl");
             for (ClassPath.ClassInfo aClass : classes) {
                 Class.forName(aClass.load().getName());
@@ -34,6 +38,7 @@ public class LoggerRegistry {
 //            Send Dev Notification
         }
 
+        // Iterating over log_levels to create configs and map sink implementations
         for (LogLevel logLevel : LogLevel.values()) {
             Properties properties = new Properties();
             try {
@@ -52,6 +57,10 @@ public class LoggerRegistry {
         }
     }
 
+    /**
+     * @param logLevel
+     * @return Sink Implementaion for given log level
+     */
     public static Sink getSinkForLogLevel(LogLevel logLevel) {
         return LOG_LEVEL_VS_SINK.get(logLevel);
     }
