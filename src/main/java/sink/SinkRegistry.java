@@ -19,10 +19,18 @@ public class SinkRegistry {
     }
 
     public static SinkRegistry getInstance() {
-        if (sinkRegistryInstance == null) {
-            sinkRegistryInstance = new SinkRegistry();
+        SinkRegistry registry = sinkRegistryInstance;
+        if (registry == null) {
+            synchronized (SinkRegistry.class) {
+                registry = sinkRegistryInstance;
+                if (registry == null) {
+                    sinkRegistryInstance = new SinkRegistry();
+                    registry = sinkRegistryInstance;
+                }
+
+            }
         }
-        return sinkRegistryInstance;
+        return registry;
     }
 
     public Sink getSinkForType(String sinkName) {
