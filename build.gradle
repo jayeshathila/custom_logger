@@ -41,16 +41,18 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    // tag::actuator[]
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-    // end::actuator[]
-    // tag::tests[]
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-    // end::tests[]
-
-    // https://mvnrepository.com/artifact/com.google.guava/guava
     compile group: 'com.google.guava', name: 'guava', version: '14.0'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+//    compile group: 'org.springframework', name: 'spring-context', version: '4.3.4.RELEASE'
+
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    compile group: 'org.springframework', name: 'spring-core'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 
 
 }

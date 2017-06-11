@@ -30,10 +30,8 @@ public class LoggerRegistry {
             for (ClassPath.ClassInfo aClass : classes) {
                 Class.forName(aClass.load().getName());
             }
-        } catch (IOException e) {
-//            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
+        } catch (IOException | ClassNotFoundException e) {
+//            Send Dev Notification
         }
 
         for (LogLevel logLevel : LogLevel.values()) {
@@ -41,7 +39,7 @@ public class LoggerRegistry {
             try {
                 properties.load(ClassLoaderUtil.getResourceAsStream(logLevel.getLoggerPropertyPath()));
             } catch (IOException e) {
-//                Send Mail
+//                Send Dev Notification
             }
             String value = PropertyUtil.getValueOrDefault(properties, SINK_TYPE, FILE);
             Sink sinkForType = SinkRegistry.getInstance().getSinkForType(value);

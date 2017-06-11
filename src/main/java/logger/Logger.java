@@ -21,7 +21,7 @@ public class Logger {
 
 
     public static void main(String[] args) {
-        Message message = new Message("Voila", LogLevel.DEBUG, "test namespace");
+        Message message = new Message("Voila", LogLevel.ERROR, "test namespace");
         Logger.log(message);
     }
 
