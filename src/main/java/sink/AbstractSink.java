@@ -1,6 +1,5 @@
 package sink;
 
-import logger.LogLevel;
 import utils.PropertyUtil;
 
 import java.util.Properties;
@@ -15,11 +14,6 @@ public abstract class AbstractSink implements Sink {
 
     public String getTimeFormat() {
         return timeFormat;
-    }
-
-    @Override
-    public LogLevel fetchSetLogLevel() {
-        return null;
     }
 
     protected void setSuperProperties(Properties properties) {

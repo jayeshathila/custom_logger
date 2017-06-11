@@ -1,6 +1,5 @@
 package sink;
 
-import logger.LogLevel;
 import logger.Message;
 
 import java.util.Properties;
@@ -14,8 +13,6 @@ public interface Sink {
     void pushLog(Message message);
 
     String getSinkName();
-
-    LogLevel fetchSetLogLevel();
 
     Sink initializeNewObject(Properties properties);
 }
