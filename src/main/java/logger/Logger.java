@@ -19,10 +19,4 @@ public class Logger {
         sink.pushLog(message);
     }
 
-
-    public static void main(String[] args) {
-        Message message = new Message("Voila", LogLevel.ERROR, "test namespace");
-        Logger.log(message);
-    }
-
 }
