@@ -20,6 +20,3 @@ To start consuming this library one can simply import the jar as external librar
 
 ## Testing
 This library has been tested and verified on Mac and Ubuntu, using JUnit and manual verification byepassing asserts.
-
-## Stats
-![visitors](https://visitor-badge.glitch.me/badge?page_id=jayeshathila.custom_logger)	![code-size](https://img.shields.io/github/languages/code-size/jayeshathila/custom_logger)
